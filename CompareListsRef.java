@@ -4,19 +4,19 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.ArrayList;
 
-class PointRef {
+class Point {
   int x, y;
-  PointRef(int x, int y) {
+  Point(int x, int y) {
     this.x = x;
     this.y = y;
   }
-  double distance(PointRef other) {
+  double distance(Point other) {
     return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
   }
 }
 
-class PointCompareRef implements Comparator<PointRef> {
-  public int compare(PointRef p1, PointRef p2) {
+class PointCompareRef implements Comparator<Point> {
+  public int compare(Point p1, Point p2) {
     if(p1.y > p2.y) {
       return 1;
     }
@@ -31,10 +31,10 @@ class PointCompareRef implements Comparator<PointRef> {
   }
 }
 
-class PointDistanceCompareRef implements Comparator<PointRef> {
-  public int compare(PointRef p1, PointRef p2) {
-    double d1 = p1.distance(new PointRef(0, 0));
-    double d2 = p2.distance(new PointRef(0, 0));
+class PointDistanceCompareRef implements Comparator<Point> {
+  public int compare(Point p1, Point p2) {
+    double d1 = p1.distance(new Point(0, 0));
+    double d2 = p2.distance(new Point(0, 0));
     if(d1 > d2) { return 1; }
     else if (d1 < d2) { return -1; }
     else { return 1; }

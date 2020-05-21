@@ -157,4 +157,16 @@ class CompareLists {
     t.checkExpect(merge(new StringCompare(), empty, strs2), strs2);
 
   }
+
+  boolean testMin (Tester t) {
+    Boolean[] a3 = {false, false, false};
+    String[] a4 = {"abc", "bcd", "cde"};
+
+    List<Boolean> ar3 = new ArrayList<Boolean>(Arrays.asList(a3));
+    List<String> ar4 = new ArrayList<String>(Arrays.asList(a4));
+    StringCompare sc = new StringCompare();
+    StringLengthCompare slc = new StringLengthCompare();
+    BooleanCompare bc = new BooleanCompare();
+    return t.checkExpect(minimum(a3, bc), true);
+  }
 }
