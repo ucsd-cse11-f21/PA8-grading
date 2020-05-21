@@ -1,0 +1,107 @@
+#!/usr/bin/python3
+import json
+import os
+import re
+import shutil
+import subprocess
+
+def find_files(top, pa_files):
+    rs = [None]
+    for root, dirs, files in os.walk(top):
+        for name in files:
+            for i in range(len(pa_files)):
+                if name == pa_files[i]:
+                    rs[i] = os.path.join(root, name)
+    return rs
+
+def write_score(json_obj):
+    if os.path.isdir("/autograder/results"):
+        resultsjson = open("/autograder/results/results.json", "w")
+        resultsjson.write(json.dumps(json_obj))
+        resultsjson.close()
+    else:
+        print("local test")
+        print(json.dumps(json_obj, indent=4, sort_keys=True))
+    exit(0)
+
+scores = [0]
+total_scores = ["?"]
+pa_files = ["CompareLists.java"]
+outputs = ["CompareLists testing...\n"]
+texts = [""]
+
+#get to the correct dir
+title = os.environ.get('ASSIGNMENT_TITLE')
+if title:
+    dir = '/autograder/' + title + '-grading'
+    if os.path.isdir(dir):
+        os.chdir(dir)
+
+#replace the current DRE with submission DRE
+if os.path.isdir("/autograder/submission/"):
+    submission_files = find_files("/autograder/submission/", pa_files)
+    for f in pa_files:
+        if (os.path.exists(f)):
+            os.remove(f)
+    for i in range(len(submission_files)):
+        if submission_files[i]:
+            shutil.copy2(submission_files[i], ".")
+        else:
+            scores[i] = -3
+
+if scores[0] != -3:
+    out_build, err_build = build_result = subprocess.Popen(
+                                        " ".join(["javac", "-cp tester.jar", "CompareLists.java CompareListsRef.java Autograder.java"]),
+                                        stdout=subprocess.PIPE,
+                                        stdin=subprocess.PIPE,
+                                        stderr=subprocess.PIPE,
+                                        shell=True).communicate()
+
+    if (not os.path.exists("./Autograder.class")):
+        scores[0] = -2
+        outputs[0] += err_build.decode()
+    else:
+        run_result = subprocess.Popen(" ".join(["java", "Autograder"]),
+                                        stdout=subprocess.PIPE,
+                                        stdin=subprocess.PIPE,
+                                        stderr=subprocess.PIPE,
+                                        shell=True)
+        run_code = run_result.returncode
+        out_run, err_run = run_result.communicate()
+        out_run = out_run.decode()
+        err_run = err_run.decode()
+
+        if run_code:
+            scores[0] = -1
+            outputs[0] += out_run + err_run
+        elif bool(re.search('PA8 total score : (\d+).*', out_run)):
+            scores[0] = int(re.search('PA8 total score : (\d+).*', out_run).group(1))
+            outputs[0] += out_run
+        else:
+            outputs[0] += out_run
+
+
+for i in range(len(scores)):
+    if scores[i] == -3:
+        texts[i] = pa_files[i] + " No Submission"
+    elif scores[i] == -2:
+        texts[i] = pa_files[i] + " Compile Error"
+    elif scores[i] == -1:
+        texts[i] = pa_files[i] + " Runtime Error"
+    else:
+        texts[i] = pa_files[i] + " scored: %d" % scores[i] + "/" + total_scores[i]
+    scores[i] = max(scores[i], 0)
+
+total_score = {
+    'output': 'Autograder result : \n' + 
+                outputs[0] + "\n---\n",
+    'tests': [
+        {
+            "name": texts[0],
+            "score": scores[0],
+            'visibility' : 'hidden'
+        }
+    ]
+}
+
+write_score(total_score)

@@ -27,6 +27,7 @@ class Autograder {
     }
 
     public static void main (String[] args) {
+        int total_score = 0;
         int score = 0;
 
         Point p1 = new Point(3, 2);
@@ -56,6 +57,7 @@ class Autograder {
             boolean pass1_4 = res1_4==ref1_4;
 
             score = bool2Int(pass1_1) + bool2Int(pass1_2) + bool2Int(pass1_3) + bool2Int(pass1_4);
+            total_score += score;
             genResult("PointCompare", 1, pass1_1, res1_1, ref1_1);
             genResult("PointCompare", 2, pass1_2, res1_2, ref1_2);
             genResult("PointCompare", 3, pass1_3, res1_3, ref1_3);
@@ -81,6 +83,7 @@ class Autograder {
             boolean pass2_3 = res2_3==ref2_3;
 
             score = bool2Int(pass2_1) + bool2Int(pass2_2) + bool2Int(pass2_3);
+            total_score += score;
             genResult("PointDistanceCompare", 1, pass2_1, res2_1, ref2_1);
             genResult("PointDistanceCompare", 2, pass2_2, res2_2, ref2_2);
             genResult("PointDistanceCompare", 3, pass2_3, res2_3, ref2_3);
@@ -110,6 +113,7 @@ class Autograder {
             boolean pass3_3 = res3_3==ref3_3;
 
             score = bool2Int(pass3_1) + bool2Int(pass3_2) + bool2Int(pass3_3);
+            total_score += score;
             genResult("StringCompare", 1, pass3_1, res3_1, ref3_1);
             genResult("StringCompare", 2, pass3_2, res3_2, ref3_2);
             genResult("StringCompare", 3, pass3_3, res3_3, ref3_3);
@@ -134,6 +138,7 @@ class Autograder {
             boolean pass4_3 = res4_3==ref4_3;
 
             score = bool2Int(pass4_1) + bool2Int(pass4_2) + bool2Int(pass4_3);
+            total_score += score;
             genResult("StringLengthCompare", 1, pass4_1, res4_1, ref4_1);
             genResult("StringLengthCompare", 2, pass4_2, res4_2, ref4_2);
             genResult("StringLengthCompare", 3, pass4_3, res4_3, ref4_3);
@@ -161,6 +166,7 @@ class Autograder {
             boolean pass5_4 = res5_4==ref5_4;
 
             score = bool2Int(pass5_1) + bool2Int(pass5_2) + bool2Int(pass5_3) + bool2Int(pass5_4);
+            total_score += score;
             genResult("BooleanCompare", 1, pass5_1, res5_1, ref5_1);
             genResult("BooleanCompare", 2, pass5_2, res5_2, ref5_2);
             genResult("BooleanCompare", 3, pass5_3, res5_3, ref5_3);
@@ -210,5 +216,7 @@ class Autograder {
             genResult("PointCompare (ArrayList<String>)", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("PointCompare (ArrayList<String>)", 1, pass_min_2, res_min_2, ref_min_2);
         } catch (Exception e) {}
+
+        System.out.println("PA8 total score : " + total_score);
     }
 }
