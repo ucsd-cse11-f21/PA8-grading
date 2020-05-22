@@ -102,6 +102,9 @@ class CompareLists {
 
   <E> boolean inOrder(List<E> list, Comparator<E> c) {
     for(int i = 0; i < list.size() - 1; i += 1) {
+      if (list.get(i) == null || list.get(i+1) == null) {
+        throw new IllegalArgumentException();
+      } 
       if(c.compare(list.get(i), list.get(i + 1)) > 0) {
         return false;
       }

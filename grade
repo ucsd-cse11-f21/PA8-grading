@@ -98,8 +98,7 @@ total_score = {
     'tests': [
         {
             "name": texts[0],
-            "score": scores[0],
-            'visibility' : 'hidden'
+            "score": scores[0]
         }
     ]
 }
