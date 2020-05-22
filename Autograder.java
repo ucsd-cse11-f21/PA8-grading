@@ -584,12 +584,8 @@ class Autograder {
 
         try {
             PointCompare pc = new PointCompare();
-            StringCompare sc = new StringCompare();
-            BooleanCompare bc = new BooleanCompare();
 
             boolean null_test_1 = cl.inOrder(pNull, pc);
-            boolean null_test_2 = cl.inOrder(sNull, sc);
-            boolean null_test_3 = cl.inOrder(bNull, bc);
 
             System.out.println("inOrder - Array : Failed to handle null element exception.");
         } catch (Exception e) {
@@ -601,8 +597,75 @@ class Autograder {
                 System.out.println("inOrder - Array : Failed to handle null element exception.");
             }
         }
-        printScore("inOrder - Array", score, 6);
+        printScore("inOrder - Array", score, 5);
+        score = 0;
 
-        System.out.println("PA8 total score : " + total_score);
+        try {
+            PointCompare pc = new PointCompare();
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            StringCompare sc = new StringCompare();
+            StringLengthCompare slc = new StringLengthCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            PointCompareRef pcr = new PointCompareRef();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            List<Point> res_m_1 = cl.merge(pc, ar5, ar6);
+            List<Point> res_m_2 = cl.merge(pdc, ar5, ar6);
+            List<String> res_m_3 = cl.merge(sc, ar3, ar4);
+            List<String> res_m_4 = cl.merge(slc, ar3, ar4);
+            List<Boolean> res_m_5 = cl.merge(bc, ar1, ar2);
+
+            List<Point> ref_m_1 = clr.merge(pcr, ar5, ar6);
+            List<Point> ref_m_2 = clr.merge(pdcr, ar5, ar6);
+            List<String> ref_m_3 = clr.merge(scr, ar3, ar4);
+            List<String> ref_m_4 = clr.merge(slcr, ar3, ar4);
+            List<Boolean> ref_m_5 = clr.merge(bcr, ar1, ar2);
+
+            boolean pass_m_1 = same(res_m_1, ref_m_1, pcr);
+            boolean pass_m_2 = same(res_m_2, ref_m_2, pcr);
+            boolean pass_m_3 = same(res_m_3, ref_m_3, scr);
+            boolean pass_m_4 = same(res_m_4, ref_m_4, scr);
+            boolean pass_m_5 = same(res_m_5, ref_m_5, bcr);
+
+            score = bool2Int(pass_m_1) + bool2Int(pass_m_2) + bool2Int(pass_m_3) + bool2Int(pass_m_4) + bool2Int(pass_m_5);
+            genResult("merge - PointCompare", 1, pass_m_1, res_m_1, ref_m_1);
+            genResult("merge - PointDistanceCompare", 1, pass_m_2, res_m_2, ref_m_2);
+            genResult("merge - StringCompare", 1, pass_m_3, res_m_3, ref_m_3);
+            genResult("merge - StringLengthCompare", 1, pass_m_4, res_m_4, ref_m_4);
+            genResult("merge - BooleanCompare", 1, pass_m_5, res_m_5, ref_m_5);
+        } catch (Exception e) {}
+
+        try {
+            PointCompare pc = new PointCompare();
+            List<Point> null_test_1 = cl.merge(pc, prNull, ar5);
+        } catch(Exception e) {
+            if (e instanceof IllegalArgumentException) {
+                System.out.println("merge : handling null element exception in the first list.");
+            }
+            else {
+                System.out.println("merge : Failed to handle null element exception in the first list.");
+            }
+        }
+
+        try {
+            PointCompare pc = new PointCompare();
+
+            List<Point> null_test_1 = cl.merge(pc, ar5, prNull);
+        } catch(Exception e) {
+            if (e instanceof IllegalArgumentException) {
+                System.out.println("merge : handling null element exception in the second list.");
+            }
+            else {
+                System.out.println("merge : Failed to handle null element exception in the second list.");
+            }
+        }
+        printScore("merge score", score, 5);
+        total_score += score;
+        
+        System.out.println("PA8 total score : " + total_score + "/63");
     }
 }
