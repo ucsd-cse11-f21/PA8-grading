@@ -474,7 +474,134 @@ class Autograder {
             printScore("greaterThan", score, 10);
         } catch (Exception e) {}
 
-        //inOrder
+        //inOrder -- ArrayList
+        Point[] pNull = {p1, null, p2};
+        String[] sNull = {"a", "b", null};
+        Boolean[] bNull = {null, true, false};
+        List<Point> prNull = new ArrayList<Point>(Arrays.asList(pNull));
+        List<String> srNull = new ArrayList<String>(Arrays.asList(sNull));
+        List<Boolean> brNull = new ArrayList<Boolean>(Arrays.asList(bNull));
+        try {
+            PointCompare pc = new PointCompare();
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            StringCompare sc = new StringCompare();
+            StringLengthCompare slc = new StringLengthCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            PointCompareRef pcr = new PointCompareRef();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            boolean res_io_1 = cl.inOrder(ar5, pc);
+            boolean res_io_2 = cl.inOrder(ar5, pdc);
+            boolean res_io_3 = cl.inOrder(ar3, sc);
+            boolean res_io_4 = cl.inOrder(ar3, slc);
+            boolean res_io_5 = cl.inOrder(ar1, bc);
+
+            boolean ref_io_1 = clr.inOrder(ar5, pcr);
+            boolean ref_io_2 = clr.inOrder(ar5, pdcr);
+            boolean ref_io_3 = clr.inOrder(ar3, scr);
+            boolean ref_io_4 = clr.inOrder(ar3, slcr);
+            boolean ref_io_5 = clr.inOrder(ar1, bcr);
+
+            boolean pass_io_1 = res_io_1==ref_io_1;
+            boolean pass_io_2 = res_io_2==ref_io_2;
+            boolean pass_io_3 = res_io_3==ref_io_3;
+            boolean pass_io_4 = res_io_4==ref_io_4;
+            boolean pass_io_5 = res_io_5==ref_io_5;
+
+            score = bool2Int(pass_io_1) + bool2Int(pass_io_2) + bool2Int(pass_io_3) + bool2Int(pass_io_4) + bool2Int(pass_io_5);
+            total_score += score;
+            genResult("inOrder - ArrayList - PointCompare", 1, pass_io_1, res_io_1, ref_io_1);
+            genResult("inOrder - ArrayList - PointDistanceCompare", 1, pass_io_2, res_io_2, ref_io_2);
+            genResult("inOrder - ArrayList - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
+            genResult("inOrder - ArrayList - StringLengthCompare", 1, pass_io_4, res_io_4, ref_io_4);
+            genResult("inOrder - ArrayList - BooleanCompare", 1, pass_io_5, res_io_5, ref_io_5);
+        } catch (Exception e) {}
+
+        try {
+            PointCompare pc = new PointCompare();
+            StringCompare sc = new StringCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            boolean null_test_1 = cl.inOrder(prNull, pc);
+            boolean null_test_2 = cl.inOrder(srNull, sc);
+            boolean null_test_3 = cl.inOrder(brNull, bc);
+
+            System.out.println("inOrder - ArrayList : Failed to handle null element exception.");
+        } catch (Exception e) {
+            if (e instanceof IllegalArgumentException) {
+                score += 1;
+                System.out.println("inOrder - ArrayList : Succeed in handling null element exception.");
+            }
+            else {
+                System.out.println("inOrder - ArrayList : Failed to handle null element exception.");
+            }
+        }
+        printScore("inOrder - ArrayList", score, 6);
+        score = 0;
+        try {
+            PointCompare pc = new PointCompare();
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            StringCompare sc = new StringCompare();
+            StringLengthCompare slc = new StringLengthCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            PointCompareRef pcr = new PointCompareRef();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            boolean res_io_1 = cl.inOrder(a5, pc);
+            boolean res_io_2 = cl.inOrder(a5, pdc);
+            boolean res_io_3 = cl.inOrder(a3, sc);
+            boolean res_io_4 = cl.inOrder(a3, slc);
+            boolean res_io_5 = cl.inOrder(a1, bc);
+
+            boolean ref_io_1 = clr.inOrder(a5, pcr);
+            boolean ref_io_2 = clr.inOrder(a5, pdcr);
+            boolean ref_io_3 = clr.inOrder(a3, scr);
+            boolean ref_io_4 = clr.inOrder(a3, slcr);
+            boolean ref_io_5 = clr.inOrder(a1, bcr);
+
+            boolean pass_io_1 = res_io_1==ref_io_1;
+            boolean pass_io_2 = res_io_2==ref_io_2;
+            boolean pass_io_3 = res_io_3==ref_io_3;
+            boolean pass_io_4 = res_io_4==ref_io_4;
+            boolean pass_io_5 = res_io_5==ref_io_5;
+
+            score = bool2Int(pass_io_1) + bool2Int(pass_io_2) + bool2Int(pass_io_3) + bool2Int(pass_io_4) + bool2Int(pass_io_5);
+            total_score += score;
+            genResult("inOrder - Array - PointCompare", 1, pass_io_1, res_io_1, ref_io_1);
+            genResult("inOrder - Array - PointDistanceCompare", 1, pass_io_2, res_io_2, ref_io_2);
+            genResult("inOrder - Array - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
+            genResult("inOrder - Array - StringLengthCompare", 1, pass_io_4, res_io_4, ref_io_4);
+            genResult("inOrder - Array - BooleanCompare", 1, pass_io_5, res_io_5, ref_io_5);
+        } catch (Exception e) {}
+
+        try {
+            PointCompare pc = new PointCompare();
+            StringCompare sc = new StringCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            boolean null_test_1 = cl.inOrder(pNull, pc);
+            boolean null_test_2 = cl.inOrder(sNull, sc);
+            boolean null_test_3 = cl.inOrder(bNull, bc);
+
+            System.out.println("inOrder - Array : Failed to handle null element exception.");
+        } catch (Exception e) {
+            if (e instanceof IllegalArgumentException) {
+                score += 1;
+                System.out.println("inOrder - Array : Succeed in handling null element exception.");
+            }
+            else {
+                System.out.println("inOrder - Array : Failed to handle null element exception.");
+            }
+        }
+        printScore("inOrder - Array", score, 6);
 
         System.out.println("PA8 total score : " + total_score);
     }

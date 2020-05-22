@@ -37,7 +37,7 @@ class PointDistanceCompareRef implements Comparator<Point> {
     double d2 = p2.distance(new Point(0, 0));
     if(d1 > d2) { return 1; }
     else if (d1 < d2) { return -1; }
-    else { return 1; }
+    else { return 0; }
   }
 }
 
