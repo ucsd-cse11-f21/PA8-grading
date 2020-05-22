@@ -25,7 +25,7 @@ def write_score(json_obj):
     exit(0)
 
 scores = [0]
-total_scores = ["?"]
+total_scores = ["65"]
 pa_files = ["CompareLists.java"]
 outputs = ["CompareLists testing...\n"]
 texts = [""]
@@ -82,7 +82,7 @@ if scores[0] != -3:
                 null_check_score += 1
             if (bool(re.search('null value in second list\nmerge : handling null element exception in the second list.', out_run))):
                 null_check_score += 1
-            outputs[0] += 'merge : handling null element score : %d\n' % null_check_score
+            outputs[0] += 'merge : handling null element score : %d/2\n' % null_check_score
         else:
             outputs[0] += out_run
 
