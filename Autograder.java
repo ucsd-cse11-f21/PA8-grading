@@ -26,6 +26,26 @@ class Autograder {
         else {return 0;}
     }
 
+    static <E> boolean same(List<E> e1, List<E> e2, Comparator<E> c) {
+        if (e1.size() != e2.size()) {return false;}
+        for (int i = 0; i < e1.size(); i++) {
+            if (c.compare(e1.get(i), e2.get(i)) != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static <E> boolean same(E[] e1, E[] e2, Comparator<E> c) {
+        if (e1.length != e2.length) {return false;}
+        for (int i = 0; i < e1.length; i++) {
+            if (c.compare(e1[i], e2[i]) != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main (String[] args) {
         int total_score = 0;
         int score = 0;
@@ -391,6 +411,70 @@ class Autograder {
         printScore("minimum - Array", score, 10);
         total_score += score;
         score = 0;
+
+        //greater than
+        try {
+            PointCompare pc = new PointCompare();
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            StringCompare sc = new StringCompare();
+            StringLengthCompare slc = new StringLengthCompare();
+            BooleanCompare bc = new BooleanCompare();
+
+            PointCompareRef pcr = new PointCompareRef();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            List<Point> res_gt_1 = cl.greaterThan(ar5, pc, p2);
+            List<Point> res_gt_2 = cl.greaterThan(ar6, pc, p1);
+            List<Point> res_gt_3 = cl.greaterThan(ar5, pdc, p2);
+            List<Point> res_gt_4 = cl.greaterThan(ar6, pdc, p1);
+            List<String> res_gt_5 = cl.greaterThan(ar3, sc, "abc");
+            List<String> res_gt_6 = cl.greaterThan(ar4, sc, "abc");
+            List<String> res_gt_7 = cl.greaterThan(ar3, slc, "abc");
+            List<String> res_gt_8 = cl.greaterThan(ar4, slc, "abc");
+            List<Boolean> res_gt_9 = cl.greaterThan(ar1, bc, false);
+            List<Boolean> res_gt_10 = cl.greaterThan(ar2, bc, true);
+
+            List<Point> ref_gt_1 = clr.greaterThan(ar5, pcr, p2);
+            List<Point> ref_gt_2 = clr.greaterThan(ar6, pcr, p1);
+            List<Point> ref_gt_3 = clr.greaterThan(ar5, pdcr, p2);
+            List<Point> ref_gt_4 = clr.greaterThan(ar6, pdcr, p1);
+            List<String> ref_gt_5 = clr.greaterThan(ar3, scr, "abc");
+            List<String> ref_gt_6 = clr.greaterThan(ar4, scr, "abc");
+            List<String> ref_gt_7 = clr.greaterThan(ar3, slcr, "abc");
+            List<String> ref_gt_8 = clr.greaterThan(ar4, slcr, "abc");
+            List<Boolean> ref_gt_9 = clr.greaterThan(ar1, bcr, false);
+            List<Boolean> ref_gt_10 = clr.greaterThan(ar2, bcr, true);
+
+            boolean pass_gt_1 = same(res_gt_1, ref_gt_1, pcr);
+            boolean pass_gt_2 = same(res_gt_2, ref_gt_2, pcr);
+            boolean pass_gt_3 = same(res_gt_3, ref_gt_3, pcr);
+            boolean pass_gt_4 = same(res_gt_4, ref_gt_4, pcr);
+            boolean pass_gt_5 = same(res_gt_5, ref_gt_5, scr);
+            boolean pass_gt_6 = same(res_gt_6, ref_gt_6, scr);
+            boolean pass_gt_7 = same(res_gt_7, ref_gt_7, scr);
+            boolean pass_gt_8 = same(res_gt_8, ref_gt_8, scr);
+            boolean pass_gt_9 = same(res_gt_9, ref_gt_9, bcr);
+            boolean pass_gt_10 = same(res_gt_10, ref_gt_10, bcr);
+
+            score = bool2Int(pass_gt_1) + bool2Int(pass_gt_2) + bool2Int(pass_gt_3) + bool2Int(pass_gt_4) + bool2Int(pass_gt_5) + bool2Int(pass_gt_6) + bool2Int(pass_gt_7) + bool2Int(pass_gt_8) + bool2Int(pass_gt_9) + bool2Int(pass_gt_10);
+            total_score += score;
+            genResult("greaterThan - PointCompare", 1, pass_gt_1, res_gt_1, ref_gt_1);
+            genResult("greaterThan - PointCompare", 2, pass_gt_2, res_gt_2, ref_gt_2);
+            genResult("greaterThan - PointDistanceCompare", 1, pass_gt_3, res_gt_3, ref_gt_3);
+            genResult("greaterThan - PointDistanceCompare", 2, pass_gt_4, res_gt_4, ref_gt_4);
+            genResult("greaterThan - StringCompare", 1, pass_gt_5, res_gt_5, ref_gt_5);
+            genResult("greaterThan - StringCompare", 2, pass_gt_6, res_gt_6, ref_gt_6);
+            genResult("greaterThan - StringLengthCompare", 1, pass_gt_7, res_gt_7, ref_gt_7);
+            genResult("greaterThan - StringLengthCompare", 2, pass_gt_8, res_gt_8, ref_gt_8);
+            genResult("greaterThan - BooleanCompare", 1, pass_gt_9, res_gt_9, ref_gt_9);
+            genResult("greaterThan - BooleanCompare", 2, pass_gt_10, res_gt_10, ref_gt_10);
+            printScore("greaterThan", score, 10);
+        } catch (Exception e) {}
+
+        //inOrder
 
         System.out.println("PA8 total score : " + total_score);
     }
