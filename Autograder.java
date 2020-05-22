@@ -175,13 +175,12 @@ class Autograder {
         } catch (Exception e) {}
 
         //CompareLists
-        score = 0;
 
         CompareLists cl = new CompareLists();
         CompareListsRef clr = new CompareListsRef();
 
         Boolean[] a1 = {true, false, false};
-        Boolean[] a2 = {true, true, false, true};
+        Boolean[] a2 = {true, true, true, true};
 
         List<Boolean> ar1 = new ArrayList<Boolean>(Arrays.asList(a1));
         List<Boolean> ar2 = new ArrayList<Boolean>(Arrays.asList(a2));
@@ -198,6 +197,7 @@ class Autograder {
         List<Point> ar5 = new ArrayList<Point>(Arrays.asList(a5));
         List<Point> ar6 = new ArrayList<Point>(Arrays.asList(a6));
 
+        score = 0;
         //minimum - ArrayList
         try{
             PointCompare pc = new PointCompare();
@@ -213,9 +213,184 @@ class Autograder {
             boolean pass_min_2 = pcr.compare(res_min_2, ref_min_2)==0;
 
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
-            genResult("PointCompare (ArrayList<String>)", 1, pass_min_1, res_min_1, ref_min_1);
-            genResult("PointCompare (ArrayList<String>)", 1, pass_min_2, res_min_2, ref_min_2);
+            genResult("minimum - ArrayList - PointCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - ArrayList - PointCompare", 2, pass_min_2, res_min_2, ref_min_2);
         } catch (Exception e) {}
+
+        try{
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            PointCompareRef pcr = new PointCompareRef();
+
+            Point res_min_1 = cl.minimum(ar5, pdc);
+            Point res_min_2 = cl.minimum(ar6, pdc);
+
+            Point ref_min_1 = clr.minimum(ar5, pdcr);
+            Point ref_min_2 = clr.minimum(ar6, pdcr);
+
+            boolean pass_min_1 = pcr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = pcr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - ArrayList - PointDistanceCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - ArrayList - PointDistanceCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            StringCompare sc = new StringCompare();
+            StringCompareRef scr = new StringCompareRef();
+
+            String res_min_1 = cl.minimum(ar3, sc);
+            String res_min_2 = cl.minimum(ar4, sc);
+
+            String ref_min_1 = clr.minimum(ar3, scr);
+            String ref_min_2 = clr.minimum(ar4, scr);
+
+            boolean pass_min_1 = scr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = scr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - ArrayList - StringCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - ArrayList - StringCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            StringLengthCompare slc = new StringLengthCompare();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+
+            String res_min_1 = cl.minimum(ar3, slc);
+            String res_min_2 = cl.minimum(ar4, slc);
+
+            String ref_min_1 = clr.minimum(ar3, slcr);
+            String ref_min_2 = clr.minimum(ar4, slcr);
+
+            boolean pass_min_1 = scr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = scr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - ArrayList - StringLengthCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - ArrayList - StringLengthCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            BooleanCompare bc = new BooleanCompare();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            Boolean res_min_1 = cl.minimum(ar1, bc);
+            Boolean res_min_2 = cl.minimum(ar2, bc);
+
+            Boolean ref_min_1 = clr.minimum(ar1, bcr);
+            Boolean ref_min_2 = clr.minimum(ar2, bcr);
+
+            boolean pass_min_1 = bcr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = bcr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - ArrayList - BooleanCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - ArrayList - BooleanCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+        
+        printScore("minimum - ArrayList", score, 10);
+        total_score += score;
+        score = 0;
+
+        //minimum - Array
+        try{
+            PointCompare pc = new PointCompare();
+            PointCompareRef pcr = new PointCompareRef();
+
+            Point res_min_1 = cl.minimum(a5, pc);
+            Point res_min_2 = cl.minimum(a6, pc);
+
+            Point ref_min_1 = clr.minimum(a5, pcr);
+            Point ref_min_2 = clr.minimum(a6, pcr);
+
+            boolean pass_min_1 = pcr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = pcr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - Array - PointCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - Array - PointCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            PointDistanceCompare pdc = new PointDistanceCompare();
+            PointDistanceCompareRef pdcr = new PointDistanceCompareRef();
+            PointCompareRef pcr = new PointCompareRef();
+
+            Point res_min_1 = cl.minimum(a5, pdc);
+            Point res_min_2 = cl.minimum(a6, pdc);
+
+            Point ref_min_1 = clr.minimum(a5, pdcr);
+            Point ref_min_2 = clr.minimum(a6, pdcr);
+
+            boolean pass_min_1 = pcr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = pcr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - Array - PointDistanceCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - Array - PointDistanceCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            StringCompare sc = new StringCompare();
+            StringCompareRef scr = new StringCompareRef();
+
+            String res_min_1 = cl.minimum(a3, sc);
+            String res_min_2 = cl.minimum(a4, sc);
+
+            String ref_min_1 = clr.minimum(a3, scr);
+            String ref_min_2 = clr.minimum(a4, scr);
+
+            boolean pass_min_1 = scr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = scr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - Array - StringCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - Array - StringCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            StringLengthCompare slc = new StringLengthCompare();
+            StringLengthCompareRef slcr = new StringLengthCompareRef();
+            StringCompareRef scr = new StringCompareRef();
+
+            String res_min_1 = cl.minimum(a3, slc);
+            String res_min_2 = cl.minimum(a4, slc);
+
+            String ref_min_1 = clr.minimum(a3, slcr);
+            String ref_min_2 = clr.minimum(a4, slcr);
+
+            boolean pass_min_1 = scr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = scr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - Array - StringLengthCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - Array - StringLengthCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        try{
+            BooleanCompare bc = new BooleanCompare();
+            BooleanCompareRef bcr = new BooleanCompareRef();
+
+            Boolean res_min_1 = cl.minimum(a1, bc);
+            Boolean res_min_2 = cl.minimum(a2, bc);
+
+            Boolean ref_min_1 = clr.minimum(a1, bcr);
+            Boolean ref_min_2 = clr.minimum(a2, bcr);
+
+            boolean pass_min_1 = bcr.compare(res_min_1, ref_min_1)==0;
+            boolean pass_min_2 = bcr.compare(res_min_2, ref_min_2)==0;
+
+            score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
+            genResult("minimum - Array - BooleanCompare", 1, pass_min_1, res_min_1, ref_min_1);
+            genResult("minimum - Array - BooleanCompare", 2, pass_min_2, res_min_2, ref_min_2);
+        } catch (Exception e) {}
+
+        printScore("minimum - Array", score, 10);
+        total_score += score;
+        score = 0;
 
         System.out.println("PA8 total score : " + total_score);
     }
