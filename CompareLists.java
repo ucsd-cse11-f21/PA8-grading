@@ -136,6 +136,10 @@ class CompareLists {
         index1 += 1;
         continue;
       }
+      if (es1.get(index1) == null) {
+        System.out.println("@@@@@@@@@@@");
+        throw new IllegalArgumentException("null value in first list");
+      }
       int compared = c.compare(es1.get(index1), es2.get(index2));
       if(compared > 0) {
         merged.add(es2.get(index2));

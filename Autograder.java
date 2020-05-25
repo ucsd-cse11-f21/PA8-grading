@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 class Autograder {
 
@@ -597,7 +599,7 @@ class Autograder {
                 System.out.println("inOrder - Array : Failed to handle null element exception.");
             }
         }
-        printScore("inOrder - Array", score, 5);
+        printScore("inOrder - Array", score, 6);
         score = 0;
 
         try {
@@ -644,7 +646,13 @@ class Autograder {
             List<Point> null_test_1 = cl.merge(pc, prNull, ar5);
         } catch(Exception e) {
             if (e instanceof IllegalArgumentException) {
-                System.out.println("merge : handling null element exception in the first list.");
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                String exceptionAsString = sw.toString();
+                if (exceptionAsString.contains("java.lang.IllegalArgumentException: null value in first list")) {
+                    score++;
+                    System.out.println("merge : Succeed in handling null element exception in first list");
+                }
             }
             else {
                 System.out.println("merge : Failed to handle null element exception in the first list.");
@@ -653,19 +661,24 @@ class Autograder {
 
         try {
             PointCompare pc = new PointCompare();
-
             List<Point> null_test_1 = cl.merge(pc, ar5, prNull);
         } catch(Exception e) {
             if (e instanceof IllegalArgumentException) {
-                System.out.println("merge : handling null element exception in the second list.");
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                String exceptionAsString = sw.toString();
+                if (exceptionAsString.contains("java.lang.IllegalArgumentException: null value in second list")) {
+                    score++;
+                    System.out.println("merge : Succeed in handling null element exception in second list");
+                }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the second list.");
+                System.out.println("merge : Failed to handle null element exception in the first list.");
             }
         }
-        printScore("merge score", score, 5);
+        printScore("merge score", score, 6);
         total_score += score;
         
-        System.out.println("PA8 total score : " + total_score + "/63");
+        System.out.println("PA8 total score : " + total_score + "/65");
     }
 }

@@ -77,12 +77,12 @@ if scores[0] != -3:
         elif bool(re.search('PA8 total score : (\d+).*', out_run)):
             scores[0] = int(re.search('PA8 total score : (\d+).*', out_run).group(1))
             outputs[0] += out_run
-            null_check_score = 0
-            if (bool(re.search('null value in first list\nmerge : handling null element exception in the first list.', out_run))):
-                null_check_score += 1
-            if (bool(re.search('null value in second list\nmerge : handling null element exception in the second list.', out_run))):
-                null_check_score += 1
-            outputs[0] += 'merge : handling null element score : %d/2\n' % null_check_score
+            # null_check_score = 0
+            # if (bool(re.search('null value in first list\nmerge : handling null element exception in the first list.', out_run))):
+            #     null_check_score += 1
+            # if (bool(re.search('null value in second list\nmerge : handling null element exception in the second list.', out_run))):
+            #     null_check_score += 1
+            # outputs[0] += 'merge : handling null element score : %d/2\n' % null_check_score
         else:
             outputs[0] += out_run
 
