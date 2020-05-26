@@ -603,6 +603,69 @@ class Autograder {
         score = 0;
 
         try {
+            List<Point> arm1 = new ArrayList<Point>() {
+                {
+                    add(p1);
+                    add(p3);
+                }
+            };
+            List<Point> arm2 = new ArrayList<Point>() {
+                {
+                    add(p5);
+                    add(p4);
+                    add(p1);
+                }
+            };
+            List<Point> arm3 = new ArrayList<Point>() {
+                {
+                    add(p2);
+                    add(p1);
+                }
+            };
+            List<Point> arm4 = new ArrayList<Point>() {
+                {
+                    add(p4);
+                }
+            };
+            List<String> arm5 = new ArrayList<String>() {
+                {
+                    add("aaaa");
+                    add("ab");
+                    add("acb");
+                }
+            };
+            List<String> arm6 = new ArrayList<String>() {
+                {
+                    add("abcd");
+                    add("faf");
+                }
+            };
+            List<String> arm7 = new ArrayList<String>() {
+                {
+                    add("ca");
+                    add("abc");
+                    add("acb");
+                }
+            };
+            List<String> arm8 = new ArrayList<String>() {
+                {
+                    add("aaaa");
+                }
+            };
+            List<Boolean> arm9 = new ArrayList<Boolean>() {
+                {
+                    add(false);
+                    add(false);
+                }
+            };
+            List<Boolean> arm10 = new ArrayList<Boolean>() {
+                {
+                    add(false);
+                    add(true);
+                    add(true);
+                }
+            };
+
             PointCompare pc = new PointCompare();
             PointDistanceCompare pdc = new PointDistanceCompare();
             StringCompare sc = new StringCompare();
@@ -615,17 +678,17 @@ class Autograder {
             StringLengthCompareRef slcr = new StringLengthCompareRef();
             BooleanCompareRef bcr = new BooleanCompareRef();
 
-            List<Point> res_m_1 = cl.merge(pc, ar5, ar6);
-            List<Point> res_m_2 = cl.merge(pdc, ar5, ar6);
-            List<String> res_m_3 = cl.merge(sc, ar3, ar4);
-            List<String> res_m_4 = cl.merge(slc, ar3, ar4);
-            List<Boolean> res_m_5 = cl.merge(bc, ar1, ar2);
+            List<Point> res_m_1 = cl.merge(pc, arm1, arm2);
+            List<Point> res_m_2 = cl.merge(pdc, arm3, arm4);
+            List<String> res_m_3 = cl.merge(sc, arm5, arm6);
+            List<String> res_m_4 = cl.merge(slc, arm7, arm8);
+            List<Boolean> res_m_5 = cl.merge(bc, arm9, arm10);
 
-            List<Point> ref_m_1 = clr.merge(pcr, ar5, ar6);
-            List<Point> ref_m_2 = clr.merge(pdcr, ar5, ar6);
-            List<String> ref_m_3 = clr.merge(scr, ar3, ar4);
-            List<String> ref_m_4 = clr.merge(slcr, ar3, ar4);
-            List<Boolean> ref_m_5 = clr.merge(bcr, ar1, ar2);
+            List<Point> ref_m_1 = clr.merge(pcr, arm1, arm2);
+            List<Point> ref_m_2 = clr.merge(pdcr, arm3, arm4);
+            List<String> ref_m_3 = clr.merge(scr, arm5, arm6);
+            List<String> ref_m_4 = clr.merge(slcr, arm7, arm8);
+            List<Boolean> ref_m_5 = clr.merge(bcr, arm9, arm10);
 
             boolean pass_m_1 = same(res_m_1, ref_m_1, pcr);
             boolean pass_m_2 = same(res_m_2, ref_m_2, pcr);
@@ -673,7 +736,7 @@ class Autograder {
                 }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the first list.");
+                System.out.println("merge : Failed to handle null element exception in the second list.");
             }
         }
         printScore("merge score", score, 6);
