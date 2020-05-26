@@ -524,7 +524,6 @@ class Autograder {
             boolean pass_io_5 = res_io_5==ref_io_5;
 
             score = bool2Int(pass_io_1) + bool2Int(pass_io_2) + bool2Int(pass_io_3) + bool2Int(pass_io_4) + bool2Int(pass_io_5);
-            total_score += score;
             genResult("inOrder - ArrayList - PointCompare", 1, pass_io_1, res_io_1, ref_io_1);
             genResult("inOrder - ArrayList - PointDistanceCompare", 1, pass_io_2, res_io_2, ref_io_2);
             genResult("inOrder - ArrayList - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
@@ -551,6 +550,7 @@ class Autograder {
                 System.out.println("inOrder - ArrayList : Failed to handle null element exception.");
             }
         }
+        total_score += score;
         printScore("inOrder - ArrayList", score, 6);
         score = 0;
         try {
@@ -585,7 +585,6 @@ class Autograder {
             boolean pass_io_5 = res_io_5==ref_io_5;
 
             score = bool2Int(pass_io_1) + bool2Int(pass_io_2) + bool2Int(pass_io_3) + bool2Int(pass_io_4) + bool2Int(pass_io_5);
-            total_score += score;
             genResult("inOrder - Array - PointCompare", 1, pass_io_1, res_io_1, ref_io_1);
             genResult("inOrder - Array - PointDistanceCompare", 1, pass_io_2, res_io_2, ref_io_2);
             genResult("inOrder - Array - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
@@ -608,6 +607,7 @@ class Autograder {
                 System.out.println("inOrder - Array : Failed to handle null element exception.");
             }
         }
+        total_score += score;
         printScore("inOrder - Array", score, 6);
         score = 0;
 
