@@ -48,6 +48,15 @@ class Autograder {
         return true;
     }
 
+    static boolean sameSign(int a1, int a2) {
+        if ((a1 > 0 && a2 > 0) || (a1 < 0 && a2 < 0) || (a1 == 0 && a2 == 0)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public static void main (String[] args) {
         int total_score = 0;
         int score = 0;
@@ -73,10 +82,10 @@ class Autograder {
             int ref1_3 = pcr.compare(p1, p4);
             int ref1_4 = pcr.compare(p1, p1);
 
-            boolean pass1_1 = res1_1==ref1_1;
-            boolean pass1_2 = res1_2==ref1_2;
-            boolean pass1_3 = res1_3==ref1_3;
-            boolean pass1_4 = res1_4==ref1_4;
+            boolean pass1_1 = sameSign(res1_1, ref1_1);
+            boolean pass1_2 = sameSign(res1_2, ref1_2);
+            boolean pass1_3 = sameSign(res1_3, ref1_3);
+            boolean pass1_4 = sameSign(res1_4, ref1_4);
 
             score = bool2Int(pass1_1) + bool2Int(pass1_2) + bool2Int(pass1_3) + bool2Int(pass1_4);
             total_score += score;
@@ -100,9 +109,9 @@ class Autograder {
             int ref2_2 = pdcr.compare(p1, p2);
             int ref2_3 = pdcr.compare(p1, p3);
             
-            boolean pass2_1 = res2_1==ref2_1;
-            boolean pass2_2 = res2_2==ref2_2;
-            boolean pass2_3 = res2_3==ref2_3;
+            boolean pass2_1 = sameSign(res2_1, ref2_1);
+            boolean pass2_2 = sameSign(res2_2, ref2_2);
+            boolean pass2_3 = sameSign(res2_3, ref2_3);
 
             score = bool2Int(pass2_1) + bool2Int(pass2_2) + bool2Int(pass2_3);
             total_score += score;
@@ -130,9 +139,9 @@ class Autograder {
             int ref3_2 = scr.compare(s1, s3);
             int ref3_3 = scr.compare(s1, s1);
 
-            boolean pass3_1 = res3_1==ref3_1;
-            boolean pass3_2 = res3_2==ref3_2;
-            boolean pass3_3 = res3_3==ref3_3;
+            boolean pass3_1 = sameSign(res3_1, ref3_1);
+            boolean pass3_2 = sameSign(res3_2, ref3_2);
+            boolean pass3_3 = sameSign(res3_3, ref3_3);
 
             score = bool2Int(pass3_1) + bool2Int(pass3_2) + bool2Int(pass3_3);
             total_score += score;
@@ -155,9 +164,9 @@ class Autograder {
             int ref4_2 = slcr.compare(s1, s3);
             int ref4_3 = slcr.compare(s1, s4);
 
-            boolean pass4_1 = res4_1==ref4_1;  
-            boolean pass4_2 = res4_2==ref4_2;  
-            boolean pass4_3 = res4_3==ref4_3;
+            boolean pass4_1 = sameSign(res4_1, ref4_1);  
+            boolean pass4_2 = sameSign(res4_2, ref4_2);  
+            boolean pass4_3 = sameSign(res4_3, ref4_3);
 
             score = bool2Int(pass4_1) + bool2Int(pass4_2) + bool2Int(pass4_3);
             total_score += score;
@@ -182,10 +191,10 @@ class Autograder {
             int ref5_3 = bcr.compare(false, false);
             int ref5_4 = bcr.compare(false, true);
 
-            boolean pass5_1 = res5_1==ref5_1;
-            boolean pass5_2 = res5_2==ref5_2;
-            boolean pass5_3 = res5_3==ref5_3;
-            boolean pass5_4 = res5_4==ref5_4;
+            boolean pass5_1 = sameSign(res5_1, ref5_1);
+            boolean pass5_2 = sameSign(res5_2, ref5_2);
+            boolean pass5_3 = sameSign(res5_3, ref5_3);
+            boolean pass5_4 = sameSign(res5_4, ref5_4);
 
             score = bool2Int(pass5_1) + bool2Int(pass5_2) + bool2Int(pass5_3) + bool2Int(pass5_4);
             total_score += score;
@@ -739,9 +748,9 @@ class Autograder {
                 System.out.println("merge : Failed to handle null element exception in the second list.");
             }
         }
-        printScore("merge score", score, 6);
+        printScore("merge score", score, 7);
         total_score += score;
         
-        System.out.println("PA8 total score : " + total_score + "/65");
+        System.out.println("PA8 total score : " + total_score + "/66");
     }
 }

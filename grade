@@ -25,7 +25,7 @@ def write_score(json_obj):
     exit(0)
 
 scores = [0]
-total_scores = ["65"]
+total_scores = ["66"]
 pa_files = ["CompareLists.java"]
 outputs = ["CompareLists testing...\n"]
 texts = [""]
