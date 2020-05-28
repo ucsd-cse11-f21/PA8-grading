@@ -597,7 +597,7 @@ class Autograder {
 
             boolean null_test_1 = cl.inOrder(pNull, pc);
 
-            System.out.println("inOrder - Array : Failed to handle null element exception.");
+            System.out.println("inOrder - Array : Failed to handle null element exception");
         } catch (Exception e) {
             if (e instanceof IllegalArgumentException) {
                 score += 1;
