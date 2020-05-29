@@ -57,7 +57,7 @@ class Autograder {
         }
     }
 
-    static printException(String m, Exception e) {
+    static void printException(String m, Exception e) {
         System.out.println("method " + m + ": Unexpected Exception caught in some of the test cases. Exception: " + e);
     }
 
