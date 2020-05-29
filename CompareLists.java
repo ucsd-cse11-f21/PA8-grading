@@ -42,8 +42,13 @@ class PointDistanceCompare implements Comparator<Point> {
 }
 
 class StringCompare implements Comparator<String> {
-  public int compare(String p1, String p2) {
-    return p1.compareTo(p2);
+  public int compare(String a, String b) {
+    for (int i = 0; i < a.length(); i++) {
+      if ((int)a.charAt(i) != (int)b.charAt(i)) {
+        return (int)a.charAt(i) - (int)b.charAt(i);
+      }
+    }
+    return 0;
   }
 }
 

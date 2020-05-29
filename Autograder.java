@@ -57,6 +57,10 @@ class Autograder {
         }
     }
 
+    static printException(String m, Exception e) {
+        System.out.println("method " + m + ": Unexpected Exception caught in some of the test cases. Exception: " + e);
+    }
+
     public static void main (String[] args) {
         int total_score = 0;
         int score = 0;
@@ -94,7 +98,9 @@ class Autograder {
             genResult("PointCompare", 3, pass1_3, res1_3, ref1_3);
             genResult("PointCompare", 4, pass1_4, res1_4, ref1_4);
             printScore("PointCompare", score, 4);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("PointCompare", e);
+        }
 
         //PointDistanceCompare
         try {
@@ -119,7 +125,9 @@ class Autograder {
             genResult("PointDistanceCompare", 2, pass2_2, res2_2, ref2_2);
             genResult("PointDistanceCompare", 3, pass2_3, res2_3, ref2_3);
             printScore("PointDistanceCompare", score, 3);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("PointDistanceCompare", e);
+        }
 
         String s1 = "aTest";
         String s2 = "bTest";
@@ -149,7 +157,9 @@ class Autograder {
             genResult("StringCompare", 2, pass3_2, res3_2, ref3_2);
             genResult("StringCompare", 3, pass3_3, res3_3, ref3_3);
             printScore("StringCompare", score, 3);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("StringCompare", e);
+        }
 
         //StringLengthCompare
         try {
@@ -174,7 +184,9 @@ class Autograder {
             genResult("StringLengthCompare", 2, pass4_2, res4_2, ref4_2);
             genResult("StringLengthCompare", 3, pass4_3, res4_3, ref4_3);
             printScore("StringLengthCompare", score, 3);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("StringLengthCompare", e);
+        }
 
         //BooleanCompare
         try {
@@ -203,7 +215,9 @@ class Autograder {
             genResult("BooleanCompare", 3, pass5_3, res5_3, ref5_3);
             genResult("BooleanCompare", 4, pass5_4, res5_4, ref5_4);
             printScore("BooleanCompare", score, 4);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("BooleanCompare", e);
+        }
 
         //CompareLists
 
@@ -246,7 +260,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - ArrayList - PointCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - ArrayList - PointCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - ArrayList", e);
+        }
 
         try{
             PointDistanceCompare pdc = new PointDistanceCompare();
@@ -265,7 +281,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - ArrayList - PointDistanceCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - ArrayList - PointDistanceCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - ArrayList", e);
+        }
 
         try{
             StringCompare sc = new StringCompare();
@@ -283,7 +301,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - ArrayList - StringCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - ArrayList - StringCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - ArrayList", e);
+        }
 
         try{
             StringLengthCompare slc = new StringLengthCompare();
@@ -302,7 +322,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - ArrayList - StringLengthCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - ArrayList - StringLengthCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - ArrayList", e);
+        }
 
         try{
             BooleanCompare bc = new BooleanCompare();
@@ -320,7 +342,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - ArrayList - BooleanCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - ArrayList - BooleanCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - ArrayList", e);
+        }
         
         printScore("minimum - ArrayList", score, 10);
         total_score += score;
@@ -343,7 +367,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - Array - PointCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - Array - PointCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - Array", e);
+        }
 
         try{
             PointDistanceCompare pdc = new PointDistanceCompare();
@@ -362,7 +388,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - Array - PointDistanceCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - Array - PointDistanceCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - Array", e);
+        }
 
         try{
             StringCompare sc = new StringCompare();
@@ -380,7 +408,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - Array - StringCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - Array - StringCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - Array", e);
+        }
 
         try{
             StringLengthCompare slc = new StringLengthCompare();
@@ -399,7 +429,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - Array - StringLengthCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - Array - StringLengthCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - Array", e);
+        }
 
         try{
             BooleanCompare bc = new BooleanCompare();
@@ -417,7 +449,9 @@ class Autograder {
             score += bool2Int(pass_min_1) + bool2Int(pass_min_2);
             genResult("minimum - Array - BooleanCompare", 1, pass_min_1, res_min_1, ref_min_1);
             genResult("minimum - Array - BooleanCompare", 2, pass_min_2, res_min_2, ref_min_2);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("minimum - Array", e);
+        }
 
         printScore("minimum - Array", score, 10);
         total_score += score;
@@ -483,7 +517,9 @@ class Autograder {
             genResult("greaterThan - BooleanCompare", 1, pass_gt_9, res_gt_9, ref_gt_9);
             genResult("greaterThan - BooleanCompare", 2, pass_gt_10, res_gt_10, ref_gt_10);
             printScore("greaterThan", score, 10);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("greaterThan", e);
+        }
 
         //inOrder -- ArrayList
         Point[] pNull = {p1, null, p2};
@@ -529,7 +565,9 @@ class Autograder {
             genResult("inOrder - ArrayList - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
             genResult("inOrder - ArrayList - StringLengthCompare", 1, pass_io_4, res_io_4, ref_io_4);
             genResult("inOrder - ArrayList - BooleanCompare", 1, pass_io_5, res_io_5, ref_io_5);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("inOrder - ArrayList", e);
+        }
 
         try {
             PointCompare pc = new PointCompare();
@@ -590,7 +628,9 @@ class Autograder {
             genResult("inOrder - Array - StringCompare", 1, pass_io_3, res_io_3, ref_io_3);
             genResult("inOrder - Array - StringLengthCompare", 1, pass_io_4, res_io_4, ref_io_4);
             genResult("inOrder - Array - BooleanCompare", 1, pass_io_5, res_io_5, ref_io_5);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("inOrder - Array", e);
+        }
 
         try {
             PointCompare pc = new PointCompare();
@@ -711,7 +751,9 @@ class Autograder {
             genResult("merge - StringCompare", 1, pass_m_3, res_m_3, ref_m_3);
             genResult("merge - StringLengthCompare", 1, pass_m_4, res_m_4, ref_m_4);
             genResult("merge - BooleanCompare", 1, pass_m_5, res_m_5, ref_m_5);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            printException("merge", e);
+        }
 
         try {
             PointCompare pc = new PointCompare();
