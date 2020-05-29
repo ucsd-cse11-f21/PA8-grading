@@ -727,17 +727,17 @@ class Autograder {
             StringLengthCompareRef slcr = new StringLengthCompareRef();
             BooleanCompareRef bcr = new BooleanCompareRef();
 
-            List<Point> res_m_1 = cl.merge(pc, arm1, arm2);
-            List<Point> res_m_2 = cl.merge(pdc, arm3, arm4);
-            List<String> res_m_3 = cl.merge(sc, arm5, arm6);
-            List<String> res_m_4 = cl.merge(slc, arm7, arm8);
-            List<Boolean> res_m_5 = cl.merge(bc, arm9, arm10);
-
             List<Point> ref_m_1 = clr.merge(pcr, arm1, arm2);
             List<Point> ref_m_2 = clr.merge(pdcr, arm3, arm4);
             List<String> ref_m_3 = clr.merge(scr, arm5, arm6);
             List<String> ref_m_4 = clr.merge(slcr, arm7, arm8);
             List<Boolean> ref_m_5 = clr.merge(bcr, arm9, arm10);
+
+            List<Point> res_m_1 = cl.merge(pc, arm1, arm2);
+            List<Point> res_m_2 = cl.merge(pdc, arm3, arm4);
+            List<String> res_m_3 = cl.merge(sc, arm5, arm6);
+            List<String> res_m_4 = cl.merge(slc, arm7, arm8);
+            List<Boolean> res_m_5 = cl.merge(bc, arm9, arm10);
 
             boolean pass_m_1 = same(res_m_1, ref_m_1, pcr);
             boolean pass_m_2 = same(res_m_2, ref_m_2, pcr);
