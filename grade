@@ -25,7 +25,7 @@ def write_score(json_obj):
     exit(0)
 
 scores = [0]
-total_scores = ["66"]
+total_scores = ["20"]
 pa_files = ["CompareLists.java"]
 outputs = ["CompareLists testing...\n"]
 texts = [""]
@@ -102,6 +102,7 @@ if scores[0] != -3:
                 scores[0] += int(re.search('merge score : (\d+).*', out_run).group(1))
             outputs[0] += out_run
 
+scores[0] = int(scores[0]*20/66)
 
 for i in range(len(scores)):
     if scores[i] == -3:
