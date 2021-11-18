@@ -765,11 +765,11 @@ class Autograder {
                 String exceptionAsString = sw.toString();
                 if (exceptionAsString.contains("IllegalArgumentException") && exceptionAsString.contains("first list")) {
                     score++;
-                    System.out.println("merge : Succeed in handling null element exception in first list");
+                    System.out.println("merge : Succeed in handling null element exception in first list: " + exceptionAsString);
                 }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the first list.");
+                System.out.println("merge : Failed to handle null element exception in the first list: " + exceptionAsString);
             }
         }
 
@@ -783,11 +783,11 @@ class Autograder {
                 String exceptionAsString = sw.toString();
                 if (exceptionAsString.contains("IllegalArgumentException") && exceptionAsString.contains("second list")) {
                     score++;
-                    System.out.println("merge : Succeed in handling null element exception in second list");
+                    System.out.println("merge : Succeed in handling null element exception in second list: " + exceptionAsString);
                 }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the second list.");
+                System.out.println("merge : Failed to handle null element exception in the second list: " + exceptionAsString);
             }
         }
         printScore("merge score", score, 7);
