@@ -763,7 +763,7 @@ class Autograder {
                 StringWriter sw = new StringWriter();
                 e.printStackTrace(new PrintWriter(sw));
                 String exceptionAsString = sw.toString();
-                if (exceptionAsString.contains("java.lang.IllegalArgumentException: null value in first list")) {
+                if (exceptionAsString.contains("IllegalArgumentException") && exceptionAsString.contains("first list")) {
                     score++;
                     System.out.println("merge : Succeed in handling null element exception in first list");
                 }
@@ -781,7 +781,7 @@ class Autograder {
                 StringWriter sw = new StringWriter();
                 e.printStackTrace(new PrintWriter(sw));
                 String exceptionAsString = sw.toString();
-                if (exceptionAsString.contains("java.lang.IllegalArgumentException: null value in second list")) {
+                if (exceptionAsString.contains("IllegalArgumentException") && exceptionAsString.contains("second list")) {
                     score++;
                     System.out.println("merge : Succeed in handling null element exception in second list");
                 }
