@@ -769,7 +769,7 @@ class Autograder {
                 }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the first list: " + exceptionAsString);
+                System.out.println("merge : Failed to handle null element exception in the first list: no exception");
             }
         }
 
@@ -787,7 +787,7 @@ class Autograder {
                 }
             }
             else {
-                System.out.println("merge : Failed to handle null element exception in the second list: " + exceptionAsString);
+                System.out.println("merge : Failed to handle null element exception in the second list: no exception");
             }
         }
         printScore("merge score", score, 7);
